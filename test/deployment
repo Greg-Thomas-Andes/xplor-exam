@@ -1,0 +1,60 @@
+// const { execSync } = require('child_process');
+// const AWS = require('aws-sdk');
+
+// describe('CDK Deploy Integration Test', () => {
+//   beforeAll(() => {
+//     // Deploy the stack using the AWS CDK CLI
+//     try {
+//       console.log('Deploying the stack...');
+//       execSync('cdk deploy --require-approval never', { stdio: 'inherit' });
+//     } catch (error) {
+//       console.error('Failed to deploy the stack:', error);
+//       throw error;
+//     }
+//   });
+
+//   test('Check if S3 bucket was deployed', async () => {
+//     const s3 = new AWS.S3();
+
+//     const bucketName = 'xplor-exam-bucket'; // Replace with your bucket name
+
+//     try {
+//       // Check if the bucket exists
+//       await s3.headBucket({ Bucket: bucketName }).promise();
+//       console.log(`S3 bucket ${bucketName} exists.`);
+//     } catch (error) {
+//       throw new Error(`Bucket ${bucketName} does not exist.`);
+//     }
+//   });
+
+//   test('Check if CloudFront distribution was deployed', async () => {
+//     const cloudfront = new AWS.CloudFront();
+
+//     try {
+//       // List CloudFront distributions and check if the correct one is created
+//       const distributions = await cloudfront.listDistributions().promise();
+//       const distribution = distributions.DistributionList.Items.find((dist: { Aliases: { Items: string | string[]; }; }) =>
+//         dist.Aliases.Items.includes(process.env.DOMAIN_NAME)
+//       );
+
+//       if (!distribution) {
+//         throw new Error('CloudFront distribution not found for domain xplorstatic.com.');
+//       }
+
+//       console.log('CloudFront distribution exists and is deployed.');
+//     } catch (error) {
+//       throw new Error('CloudFront distribution check failed.');
+//     }
+//   });
+
+//   afterAll(() => {
+//     // Cleanup the stack after testing
+//     try {
+//       console.log('Destroying the stack...');
+//       execSync('cdk destroy --force', { stdio: 'inherit' });
+//     } catch (error) {
+//       console.error('Failed to destroy the stack:', error);
+//       throw error;
+//     }
+//   });
+// });
